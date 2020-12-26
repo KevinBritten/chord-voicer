@@ -1,5 +1,5 @@
 <template>
-  <div><input type="number" v-bind="" /></div>
+  <div><input type="number" /></div>
 </template>
 
 <script>
