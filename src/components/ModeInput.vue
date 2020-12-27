@@ -2,18 +2,17 @@
   <div>
     <input
       type="number"
-      @input="$emit('update-voice-value', { voiceValue, voiceNumber })"
-      v-model.number="voiceValue"
+      @input="$emit('update-mode-values', { modeValues })"
+      v-model.number="modeValues"
     />
   </div>
 </template>
 
 <script>
 export default {
-  props: ["voice-number"],
   data() {
     return {
-      voiceValue: 0
+      modeValues: 0
     };
   }
 };
