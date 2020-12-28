@@ -1,9 +1,14 @@
 <template>
   <div>
     <input
-      type="number"
-      @input="$emit('update-voice-value', { voiceValue, voiceNumber })"
-      v-model.number="voiceValue"
+      type="text"
+      @input="
+        $emit('update-voice-value', {
+          voiceValue: intervalList[intervalName],
+          voiceNumber
+        })
+      "
+      v-model="intervalName"
     />
   </div>
 </template>
@@ -13,7 +18,21 @@ export default {
   props: ["voice-number"],
   data() {
     return {
-      voiceValue: 0
+      intervalName: "",
+      intervalList: {
+        r: 0,
+        m2: 1,
+        M2: 2,
+        m3: 3,
+        M3: 4,
+        "4": 5,
+        b5: 6,
+        "5": 7,
+        m6: 8,
+        M6: 9,
+        m7: 10,
+        M7: 11
+      }
     };
   }
 };
