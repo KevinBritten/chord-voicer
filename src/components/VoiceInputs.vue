@@ -112,15 +112,16 @@ export default {
       // define distance to move to line up with specified voice(s)
       let distance = melodyNote - voicing[voicing.length - 1];
       distance = distance < 0 ? distance + 12 : distance;
-      console.log(distance);
+      console.log("distance " + distance);
       // check if voicing fits at given position
       let fitsMode = true;
       for (let note of voicing) {
         if (note && fitsMode) {
-          console.log(note);
-          fitsMode = modeIntervals.includes(12 % (note + distance))
-            ? true
-            : false;
+          console.log("note: " + note);
+          let transposedNote = note + distance;
+          transposedNote =
+            transposedNote > 11 ? transposedNote - 12 : transposedNote;
+          fitsMode = modeIntervals.includes(transposedNote) ? true : false;
         }
       }
       console.log(fitsMode);

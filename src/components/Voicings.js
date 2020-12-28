@@ -1,5 +1,6 @@
 export default [
   [false, false, false, 0, 3, 7],
+  [false, false, false, 0, 4, 7],
   [false, false, 7, 2, 4, 11],
   [false, false, 11, 4, 7, 2],
   [false, false, 0, 5, 9, 4],
