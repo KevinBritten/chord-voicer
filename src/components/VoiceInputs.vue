@@ -103,10 +103,10 @@ export default {
     checkOneVoicing(voicing) {
       // melody only
       // input data
-      //try destructing after const {mode,modes melodyNote} = this
-      const mode = this.mode;
-      const melodyNote = this.melodyNote;
-      const modes = this.modes;
+      const { mode, modes, melodyNote } = this;
+      // const mode = this.mode;
+      // const melodyNote = this.melodyNote;
+      // const modes = this.modes;
       // define current mode
       const modeIntervals = modes[mode];
       // define distance to move to line up with specified voice(s)
