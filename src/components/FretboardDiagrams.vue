@@ -1,12 +1,10 @@
 <template>
   <div>
-    <!-- <fretboard-diagram
-      v-for="(fretboardDiagram, index) of fretboardDiagrams"
-      :key="index"
-      :fretboardDiagram="fretboardDiagram"
-    ></fretboard-diagram> -->
     <fretboard-diagram
-      :fretboardDiagram="fretboardDiagrams[0]"
+      v-for="(chordResult, index) of chordResults"
+      :key="index"
+      :fretboard-diagram="chordResult.fretboardDiagram"
+      :voicing="chordResult.voicing"
     ></fretboard-diagram>
   </div>
 </template>
@@ -14,7 +12,7 @@
 <script>
 import FretboardDiagram from "./FretboardDiagram.vue";
 export default {
-  props: ["fretboardDiagrams"],
+  props: ["chordResults"],
   components: {
     FretboardDiagram
   }

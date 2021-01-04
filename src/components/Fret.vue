@@ -1,9 +1,11 @@
 <template>
-  <div><span v-if="fretted">•</span></div>
+  <div>
+    <span v-if="fretted">{{ voice }}</span>
+  </div>
 </template>
 
 <script>
-export default { props: ["fretted"] };
+export default { props: ["fretted", "voice"] };
 </script>
 
 <style scoped>
@@ -15,6 +17,6 @@ div {
 }
 span {
   position: absolute;
-  font-size: 30px;
+  font-size: 22px;
 }
 </style>

@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div>melody{{ melodyNote }}</div>
-    <div>selectedMode{{ selectedMode }}</div>
+    <h3>Mode</h3>
+    <mode-input @update-mode-values="updateMode"></mode-input>
+    <h3>Melody Note</h3>
 
     <voice-input
       v-for="i in voiceQuantity"
@@ -9,13 +10,11 @@
       :voice-number="i"
       @update-voice-value="updateMelodyNote"
     ></voice-input>
-    <fretboard-diagrams
-      v-if="fretboardDiagrams.length > 0"
-      :fretboardDiagrams="fretboardDiagrams"
-    ></fretboard-diagrams>
-    <mode-input @update-mode-values="updateMode"></mode-input>
     <button type="button" @click="checkAllVoicings" />
-    <div>{{ results }}</div>
+    <fretboard-diagrams
+      v-if="chordResults[0]"
+      :chordResults="chordResults"
+    ></fretboard-diagrams>
   </div>
 </template>
 
@@ -36,8 +35,7 @@ export default {
       voicings: Voicings,
       modes: Modes,
       strings: Strings,
-      results: [],
-      fretboardDiagrams: []
+      chordResults: []
     };
   },
 
@@ -54,17 +52,28 @@ export default {
       const matchingVoicings = [];
       const fretboardDiagrams = [];
       for (let voicing of voicings) {
-        const result = this.checkOneVoicing(voicing);
-        if (result) {
-          matchingVoicings.push(result);
+        const searchResult = this.checkOneVoicing(voicing);
+        if (searchResult) {
+          this.chordResults.push({
+            fretboardDiagram: this.convertToFretboard(searchResult),
+            voicing: searchResult
+          });
         }
       }
-      console.log(matchingVoicings);
-      for (let voicing of matchingVoicings) {
-        fretboardDiagrams.push(this.convertToFretboard(voicing));
-      }
-      console.log(fretboardDiagrams);
-      this.fretboardDiagrams = fretboardDiagrams;
+
+      // for (let voicing of voicings) {
+      //   const result = this.checkOneVoicing(voicing);
+      //   if (result) {
+      //     matchingVoicings.push(result);
+      //   }
+      // }
+      // this.matchingVoicings = matchingVoicings;
+      // for (let [i, voicing] of matchingVoicings) {
+      //   this.chordResults.push({
+      //     fretboardDiagram: this.convertToFretboard(voicing),
+      //     // voices:
+      //   });
+      // }
     },
     checkOneVoicing(voicing) {
       // melody only
