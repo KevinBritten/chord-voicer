@@ -10,7 +10,7 @@
       :voice-number="i"
       @update-voice-value="updateMelodyNote"
     ></voice-input>
-    <button type="button" @click="checkAllVoicings" />
+    <button type="button" @click="updateDiagrams" />
     <fretboard-diagrams
       v-if="chordResults[0]"
       :chordResults="chordResults"
@@ -46,6 +46,10 @@ export default {
     },
     updateMode(inputData) {
       this.selectedMode = inputData.modeValues;
+    },
+    updateDiagrams() {
+      this.chordResults = [];
+      this.checkAllVoicings();
     },
     checkAllVoicings() {
       let voicings = this.voicings;
